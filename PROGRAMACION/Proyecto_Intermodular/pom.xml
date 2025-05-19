@@ -11,4 +11,15 @@
         <maven.compiler.target>23</maven.compiler.target>
         <exec.mainClass>com.mycompany.proyecto_intermodular.Proyecto_Intermodular</exec.mainClass>
     </properties>
+     <dependencies>
+        
+        <!-- Driver JDBC para MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+        
+    </dependencies>
+    
 </project>
