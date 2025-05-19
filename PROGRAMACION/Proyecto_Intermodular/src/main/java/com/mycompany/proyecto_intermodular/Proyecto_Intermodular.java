@@ -15,7 +15,22 @@ public class Proyecto_Intermodular {
                System.out.println("2-VER ROLES"); 
                 
                 
+         switch (opcion) {
+            case "1":
                 
+                break;
+            case "2";
+            
+                break;
+                
+            case "3";
+            
+                break;
+                
+            default:
+                
+        }
+       
                 
     }
 }
