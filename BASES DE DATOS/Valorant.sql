@@ -17,15 +17,15 @@ CREATE TABLE Agentes (
     descripcion VARCHAR(200),
     genero VARCHAR(20) CHECK (genero IN ('Masculino', 'Femenino', 'Otro')),
     idRol INT,
-    FOREIGN KEY (idRol) REFERENCES Rol(idRol)
+    idHabilidad INT,
+    FOREIGN KEY (idRol) REFERENCES Rol(idRol),
+    FOREIGN KEY (idHabilidad) REFERENCES Habilidad(idHabilidad)
 );
 
 -- 4. Tabla Habilidad (con FK a Agente)
 CREATE TABLE Habilidad (
     idHabilidad INT AUTO_INCREMENT PRIMARY KEY,
-    descripcion VARCHAR(200) NOT NULL,
-    idAgente INT,
-    FOREIGN KEY (idAgente) REFERENCES Agentes(idAgente)
+    descripcion VARCHAR(200) NOT NULL
 );
 
 -- 5. Insertar roles
@@ -35,13 +35,13 @@ INSERT INTO Rol (nombre, posicion) VALUES
 ('Smoker', 'Control');
 
 -- 6. Insertar agentes
-INSERT INTO Agentes (nombre, descripcion, genero, idRol) VALUES
-('Jett', 'Agente ágil con habilidades de viento', 'Femenino', 1),
-('Sage', 'Apoyo defensivo con habilidades de curación y ralentización', 'Femenino', 2),
-('Brimstone', 'Especialista en controlar el mapa con humo y ataques aéreos', 'Masculino', 3);
+INSERT INTO Agentes (nombre, descripcion, genero, idRol, idHabilidad) VALUES
+('Jett', 'Agente ágil con habilidades de viento', 'Femenino', 1,1),
+('Sage', 'Apoyo defensivo con habilidades de curación y ralentización', 'Femenino', 2,2),
+('Brimstone', 'Especialista en controlar el mapa con humo y ataques aéreos', 'Masculino', 3,3);
 
 -- 7. Insertar habilidades (ahora sí se puede referenciar a Agentes por id)
-INSERT INTO Habilidad (descripcion, idAgente) VALUES
-('Deslizamiento rápido hacia adelante', 1),
-('Orbe de ralentización que bloquea el paso', 2),
-('Lanzamiento de humo desde el cielo', 3);
+INSERT INTO Habilidad (descripcion) VALUES
+('Deslizamiento rápido hacia adelante'),
+('Orbe de ralentización que bloquea el paso'),
+('Lanzamiento de humo desde el cielo');
