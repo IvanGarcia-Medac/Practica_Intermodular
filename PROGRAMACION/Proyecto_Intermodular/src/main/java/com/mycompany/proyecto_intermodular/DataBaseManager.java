@@ -53,9 +53,16 @@ public class DataBaseManager {
                 Agente a = new Agente(nombre, descripcion, genero, rol);
             }
 
-        } catch (SQLException e) {
-            System.out.println("Error" + e.getMessage());
-        }
+     } catch (SQLException e) {
+    System.out.println("Error de SQL: " + e.getMessage());
+
+    } catch (IndexOutOfBoundsException e) {
+    System.out.println("Índice fuera de rango: " + e.getMessage());
+
+    } catch (NumberFormatException e) {
+    System.out.println("Formato de número inválido: " + e.getMessage());
+
+}
 
     }
 
