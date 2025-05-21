@@ -18,6 +18,7 @@ public class Agente {
     }
     
     //getters y setters
+
     public String getNombre() {
         return nombre;
     }
@@ -42,13 +43,18 @@ public class Agente {
         this.genero = genero;
     }
 
-    public int getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(int rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
+   
+
+   
+
+    
     
     //to string
 
@@ -56,6 +62,8 @@ public class Agente {
     public String toString() {
         return "Agente{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", genero=" + genero + ", rol=" + rol + '}';
     }
+
+    
     
     
 
