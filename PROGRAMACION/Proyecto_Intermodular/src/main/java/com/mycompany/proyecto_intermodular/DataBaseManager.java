@@ -35,11 +35,13 @@ public class DataBaseManager {
         ArrayList<Rol> roles = new ArrayList<>();// arraylist de roles
         ArrayList<Habilidad> habilidades = new ArrayList<>();// arraylist de habilidades
 
-        String cAgentes = "select nombre,descripcion,genero,rol from agentes";
-        String cRoles = "select nombre,posicion from rol";
-        String cHabilidades = "select idhabilidad,descripcion,IdAgente from habilidad";
+        String cAgentes = "select nombre,descripcion,genero,Idrol from agentes"; // consulta para los agentes
+        String cRoles = "select idRol,nombre,posicion from rol"; // consulta para toles
+        String cHabilidades = "select idhabilidad,descripcion,IdAgente from habilidad"; // consultas para habilidades
 
-        try {
+        String consultaRoles = "select nombre,posion from rol inner join agentes on IdRol=IdRol where Idrol=IdRol";
+
+        try {// cargar agentes
             PreparedStatement stmt = conn.prepareStatement(cAgentes); //consulta que se hace (lanza la consulta)
             ResultSet rs = stmt.executeQuery(); // guarda los resultados de la consulta 
 
@@ -48,9 +50,19 @@ public class DataBaseManager {
                 String nombre = rs.getString("nombre");
                 String descripcion = rs.getString("descripcion");
                 String genero = rs.getString("genero");
-                int rol = rs.getInt("rol");
                 
-                Agente a = new Agente(nombre, descripcion, genero, rol);
+                
+                //consulta con where y crear el objeto
+                PreparedStatement stmt2 = conn.prepareStatement(consultaRoles); //consulta que se hace (lanza la consulta)
+                ResultSet rs2 = stmt2.executeQuery(); // guarda los resultados de la consulta 
+                String nombreR = rs.getString("nombre");
+                String posicion = rs.getString("posicion");
+
+                Rol arol = new Rol( nombreR, descripcion);//Objeto rol
+                
+                Agente a = new Agente(nombre, descripcion, genero, arol);
+
+                agentes.add(a);
             }
 
         } catch (SQLException e) {
@@ -58,5 +70,4 @@ public class DataBaseManager {
         }
 
     }
-
 }

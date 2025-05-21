@@ -7,10 +7,10 @@ public class Agente {
     private String nombre;
     private String descripcion;
     private String genero;
-    private int  rol;
+    private Rol rol;
 
     //constructor
-    public Agente(String nombre, String descripcion, String genero, int rol) {
+    public Agente(String nombre, String descripcion, String genero, Rol rol) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.genero = genero;

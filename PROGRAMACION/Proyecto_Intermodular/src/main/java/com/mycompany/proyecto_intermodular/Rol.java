@@ -4,20 +4,18 @@ package com.mycompany.proyecto_intermodular;
 
 public class Rol {
   
-    private int idRol;
+    
     private String nombre;
     private String posicion;
 
     //Constructor
-    public Rol(int idRol, String nombre, String posicion) {
-        this.idRol = idRol;
+    public Rol( String nombre, String posicion) {
+        
         this.nombre = nombre;
         this.posicion = posicion;
     }
     // Getters
-    public int getIdRol() {
-        return idRol;
-    }
+   
 
     public String getNombre() {
         return nombre;
@@ -27,10 +25,7 @@ public class Rol {
         return posicion;
     }
 
-    // Setters
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
-    }
+   
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -43,7 +38,7 @@ public class Rol {
     // toString
     @Override
     public String toString() {
-        return "Rol{" + "idRol=" + idRol + ", nombre=" + nombre + ", posicion=" + posicion + '}';
+        return "Rol{ nombre=" + nombre + ", posicion=" + posicion + '}';
     }
     
     
