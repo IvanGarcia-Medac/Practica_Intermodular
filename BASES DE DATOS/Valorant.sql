@@ -1,45 +1,58 @@
-drop database if exists Valorant;
-create database Valorant;
-use Valorant;
+-- 1. Borrado previo de las tablas si existen
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE Habilidad CASCADE CONSTRAINTS';
+    EXECUTE IMMEDIATE 'DROP TABLE Rol CASCADE CONSTRAINTS';
+    EXECUTE IMMEDIATE 'DROP TABLE Agentes CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
 
-create table Agentes(
-    idAgente int auto_increment primary key,
+-- 2. Creación de tabla Agentes
+CREATE TABLE Agentes (
+    idAgente INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(50) NOT NULL,
+    descripcion VARCHAR2(200),
+    genero VARCHAR2(20) CHECK (genero IN ('Masculino', 'Femenino', 'Otro')),
     idRol int,
-    nombre varchar2(15) not null,
-    descripcion varchar2(200),
-    genero varchar2(20)
-    foreign key (idRol) references Agentes(idRol)
+    CONSTRAINT fk_agente_rol FOREIGN KEY (idRol) REFERENCES Rol(idRol)
 );
 
-create table Rol(
-    idRol int auto_increment primary key,
-    nombre varchar2(15) not null,
-    posicion varchar2(15);
+-- 3. Creación de tabla Rol
+CREATE TABLE Rol (
+    idRol INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nombre VARCHAR2(15) NOT NULL CHECK (nombre IN ('Duelista', 'Sentinel', 'Smoker')),
+    posicion VARCHAR2(15)
 );
 
-create table Habilidad(
-    idHabilidad int auto_increment primary key,
-    descripcion  varchar2(200) not null,
-    idAgente int,
-    foreign key (idAgente) references Agentes(idAgente)
+-- 4. Creación de tabla Habilidad
+CREATE TABLE Habilidad (
+    idHabilidad INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    descripcion VARCHAR2(200) NOT NULL,
+    idAgente INT,
+    CONSTRAINT fk_agente_habilidad FOREIGN KEY (idAgente) REFERENCES Agentes(idAgente)
 );
 
+-- 5. Inserción de datos
+
+-- Agentes
 INSERT INTO Agentes (nombre, descripcion, genero) VALUES
-('Jett', 'Agente ágil con habilidades de viento', 'Femenino'),
-('Sage', 'Apoyo defensivo con habilidades de curación y ralentización', 'Femenino'),
-('Brimstone', 'Especialista en controlar el mapa con humo y ataques aéreos', 'Masculino'
-);
+('Jett', 'Agente ágil con habilidades de viento', 'Femenino');
+INSERT INTO Agentes (nombre, descripcion, genero) VALUES
+('Sage', 'Apoyo defensivo con habilidades de curación y ralentización', 'Femenino');
+INSERT INTO Agentes (nombre, descripcion, genero) VALUES
+('Brimstone', 'Especialista en controlar el mapa con humo y ataques aéreos', 'Masculino');
 
-INSERT INTO Rol (nombre, posicion, idAgente) VALUES
-('Duelista', 'Ataque', 1),
-('Sentinel', 'Defensa', 2),
-('Smoker', 'Control', 3
-);
+-- Roles
+INSERT INTO Rol (nombre, posicion) VALUES ('Duelista', 'Ataque');
+INSERT INTO Rol (nombre, posicion) VALUES ('Sentinel', 'Defensa');
+INSERT INTO Rol (nombre, posicion) VALUES ('Smoker', 'Control');
 
-INSERT INTO Habilidad (descripcion, idAgente) VALUES
-('Deslizamiento rápido hacia adelante', 1),
-('Orbe de ralentización que bloquea el paso', 2),
-('Lanzamiento de humo desde el cielo', 3
-);
+-- Habilidades
+INSERT INTO Habilidad (descripcion, idAgente) VALUES ('Deslizamiento rápido hacia adelante', 1);
+INSERT INTO Habilidad (descripcion, idAgente) VALUES ('Orbe de ralentización que bloquea el paso', 2);
+INSERT INTO Habilidad (descripcion, idAgente) VALUES ('Lanzamiento de humo desde el cielo', 3);
 
-
+select * from Rol;
+select * from Habilidad;
+select * from Agentes;
