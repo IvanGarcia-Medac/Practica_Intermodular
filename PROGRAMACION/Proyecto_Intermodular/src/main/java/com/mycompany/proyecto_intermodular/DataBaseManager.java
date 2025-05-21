@@ -7,9 +7,9 @@ import java.util.List;
 public class DataBaseManager {
   
     
-    private List<EntidadPrincipal> entidadesPrincipales;
+    private List<Agente> entidadesPrincipales;
     private List<EntidadSecundaria> entidadesSecundarias;
 
-        EntidadPrincipal = new ArrayList<>();
+        Agente = new ArrayList<>();
         EntidadSecundaria = new ArrayList<>();
 }
