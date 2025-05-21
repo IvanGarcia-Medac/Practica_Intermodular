@@ -62,6 +62,8 @@ public class DataBaseManager {
     } catch (NumberFormatException e) {
     System.out.println("Formato de número inválido: " + e.getMessage());
 
+    } catch (Exception e) {
+    System.out.println("Ocurrió un error inesperado: " + e.getMessage());
 }
 
     }
