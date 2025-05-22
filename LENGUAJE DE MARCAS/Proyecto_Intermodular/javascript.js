@@ -10,29 +10,38 @@ function cambiarEstilo() { // creo la funcion
     }
 }
 
-// Espera a que todo el contenido del documento HTML esté cargado
-document.addEventListener('DOMContentLoaded', function () {
+// Obtener todas las tablas con clase 'resaltable'
+var tablas = document.getElementsByClassName('resaltable');
 
-    // Selecciona todas las filas <tr> dentro del <tbody> de las tablas con la clase 'resaltable'
-    const filas = document.querySelectorAll('.resaltable tbody tr');
+// Recorrer cada tabla encontrada
+for (var i = 0; i < tablas.length; i++) {
+    var tabla = tablas[i];
 
-    // Recorre cada fila seleccionada
-    filas.forEach(fila => {
+    // Obtener los <tbody> (asumimos uno por tabla)
+    var cuerpos = tabla.getElementsByTagName('tbody');
+    if (cuerpos.length === 0) continue;
 
-        // Agrega un evento cuando el mouse pasa por encima de la fila
-        fila.addEventListener('mouseover', function () {
-            // Cambia el color de fondo de la fila a un celeste suave
-            fila.style.backgroundColor = '#d0f0fd';
+    // Obtener todas las filas <tr> dentro del <tbody>
+    var filas = cuerpos[0].getElementsByTagName('tr');
 
-            // Cambia el cursor del mouse a "pointer" (mano), indicando que se puede interactuar
-            fila.style.cursor = 'pointer';
-        });
+    for (var j = 0; j < filas.length; j++) {
+        var fila = filas[j];
 
-        // Agrega un evento cuando el mouse sale de la fila
-        fila.addEventListener('mouseout', function () {
-            // Restaura el color de fondo original (sin color especial)
-            fila.style.backgroundColor = '';
-        });
-    });
-});
+        // Usar una función anónima para capturar correctamente el contexto de cada fila
+        (function(fila) {
+            // Evento cuando el mouse entra a la fila
+            fila.addEventListener('mouseover', function () {
+                fila.style.backgroundColor = '#d0f0fd';
+                fila.style.cursor = 'pointer';
+            });
+
+            // Evento cuando el mouse sale de la fila
+            fila.addEventListener('mouseout', function () {
+                fila.style.backgroundColor = '';
+            });
+        })(fila); // Llamamos a la función anónima con el contexto de cada fila
+    }
+}
+
+
 
