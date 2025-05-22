@@ -16,11 +16,11 @@ public class DataBaseManager {
     String password; // contraseña de mi base de datos
     Connection conn;
 
-    
     ArrayList<Agente> agentes = new ArrayList<>(); // arraylist de agentes
     ArrayList<Rol> roles = new ArrayList<>();// arraylist de roles
     ArrayList<Habilidad> habilidades = new ArrayList<>();// arraylist de habilidades
     //constructor 
+
     public DataBaseManager() {
 
         try {
@@ -35,13 +35,11 @@ public class DataBaseManager {
     }
 
     public void cargarDatos() {
-        
 
         String cAgentes = "select nombre,descripcion,genero,Idrol from agentes"; // consulta para los agentes
-        String cRoles = "select idRol,nombre,posicion from rol"; // consulta para toles
         String cHabilidades = "select idhabilidad,descripcion,IdAgente from habilidad"; // consultas para habilidades
 
-        String consultaRoles = "select nombre,posion from rol inner join agentes on IdRol=IdRol where rol.Idrol=agentes.IdRol";
+        String consultaRoles = "SELECT rol.idrol AS idRol, rol.nombre, rol.posicion FROM rol INNER JOIN agentes ON rol.IdRol = agentes.IdRol WHERE rol.IdRol = agentes.IdRol";
 
         try {// cargar agentes
             PreparedStatement stmt = conn.prepareStatement(cAgentes); //consulta que se hace (lanza la consulta)
@@ -52,42 +50,48 @@ public class DataBaseManager {
                 String nombre = rs.getString("nombre");
                 String descripcion = rs.getString("descripcion");
                 String genero = rs.getString("genero");
-                
-                
+
                 //consulta con where y crear el objeto
                 PreparedStatement stmt2 = conn.prepareStatement(consultaRoles); //consulta que se hace (lanza la consulta)
                 ResultSet rs2 = stmt2.executeQuery(); // guarda los resultados de la consulta 
-                int idRol = rs.getInt("IdRol");
-                String nombreR = rs.getString("nombre");
-                String posicion = rs.getString("posicion");
+                if (rs2.next()) {
+                    int idRol = rs2.getInt("idRol");
+                    String nombreR = rs2.getString("nombre");
+                    String posicion = rs2.getString("posicion");
 
-                Rol arol = new Rol( idRol,nombreR, descripcion);//Objeto rol
-                
-                Agente a = new Agente(nombre, descripcion, genero, arol);
+                    Rol arol = new Rol(idRol, nombreR, posicion);
+                    Agente a = new Agente(nombre, descripcion, genero, arol);
+                    agentes.add(a);
+                } else {
+                    System.out.println("No se encontraron roles para el agente.");
+                }
 
-                agentes.add(a); // meto los agentes en 
+                stmt2.close();
+                rs2.close();
             }
+            stmt.close();
+            rs.close();
 
-     } catch (SQLException e) {
-    System.out.println("Error de SQL: " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Error de SQL: " + e.getMessage());
 
-    } catch (IndexOutOfBoundsException e) {
-    System.out.println("Índice fuera de rango: " + e.getMessage());
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Índice fuera de rango: " + e.getMessage());
 
-    } catch (NumberFormatException e) {
-    System.out.println("Formato de número inválido: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Formato de número inválido: " + e.getMessage());
 
-    } catch (Exception e) {
-    System.out.println("Ocurrió un error inesperado: " + e.getMessage());
-}
+        } catch (Exception e) {
+            System.out.println("Ocurrió un error inesperado: " + e.getMessage());
+        }
 
     }
-    
-    public void imprimirAgentes(){
+
+    public void imprimirAgentes() {
         for (int i = 0; i < agentes.size(); i++) {
             System.out.println(agentes.get(i));
-            
+
         }
     }
-    
+
 }
