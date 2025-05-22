@@ -4,62 +4,53 @@ package com.mycompany.proyecto_intermodular;
 
 public class Rol {
   
-<<<<<<< HEAD
-=======
+// atributos 
     
->>>>>>> 89c925b6f4978cf620358aadc21555165e7de600
+    private int idrol;
     private String nombre;
     private String posicion;
+    
+    // constructor
 
-    //Constructor
-<<<<<<< HEAD
-    public Rol(String nombre, String posicion) {
-=======
-    public Rol( String nombre, String posicion) {
-        
->>>>>>> 89c925b6f4978cf620358aadc21555165e7de600
+    public Rol(int idrol, String nombre, String posicion) {
+        this.idrol = idrol;
         this.nombre = nombre;
         this.posicion = posicion;
     }
-    // Getters
-<<<<<<< HEAD
-=======
-   
+    
+    //ggeters y setters
 
->>>>>>> 89c925b6f4978cf620358aadc21555165e7de600
+    public int getIdrol() {
+        return idrol;
+    }
+
+    public void setIdrol(int idrol) {
+        this.idrol = idrol;
+    }
+
     public String getNombre() {
         return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getPosicion() {
         return posicion;
     }
 
-<<<<<<< HEAD
-    // Setters
-=======
-   
-
->>>>>>> 89c925b6f4978cf620358aadc21555165e7de600
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public void setPosicion(String posicion) {
         this.posicion = posicion;
     }
+    
+    
+    //to string
 
-    // toString
     @Override
     public String toString() {
-<<<<<<< HEAD
-        return "Rol{" + "nombre=" + nombre + ", posicion=" + posicion + '}';
-=======
-        return "Rol{ nombre=" + nombre + ", posicion=" + posicion + '}';
->>>>>>> 89c925b6f4978cf620358aadc21555165e7de600
+        return "Rol{" + "idrol=" + idrol + ", nombre=" + nombre + ", posicion=" + posicion + '}';
     }
-    
-    
     
     
 }

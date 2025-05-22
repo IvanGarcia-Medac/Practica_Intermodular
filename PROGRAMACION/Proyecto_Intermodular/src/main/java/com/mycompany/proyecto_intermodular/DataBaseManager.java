@@ -39,7 +39,7 @@ public class DataBaseManager {
         String cRoles = "select idRol,nombre,posicion from rol"; // consulta para toles
         String cHabilidades = "select idhabilidad,descripcion,IdAgente from habilidad"; // consultas para habilidades
 
-        String consultaRoles = "select nombre,posion from rol inner join agentes on IdRol=IdRol where Idrol=IdRol";
+        String consultaRoles = "select nombre,posion from rol inner join agentes on IdRol=IdRol where rol.Idrol=agentes.IdRol";
 
         try {// cargar agentes
             PreparedStatement stmt = conn.prepareStatement(cAgentes); //consulta que se hace (lanza la consulta)
@@ -55,10 +55,11 @@ public class DataBaseManager {
                 //consulta con where y crear el objeto
                 PreparedStatement stmt2 = conn.prepareStatement(consultaRoles); //consulta que se hace (lanza la consulta)
                 ResultSet rs2 = stmt2.executeQuery(); // guarda los resultados de la consulta 
+                int idRol = rs.getInt("IdRol");
                 String nombreR = rs.getString("nombre");
                 String posicion = rs.getString("posicion");
 
-                Rol arol = new Rol( nombreR, descripcion);//Objeto rol
+                Rol arol = new Rol( idRol,nombreR, descripcion);//Objeto rol
                 
                 Agente a = new Agente(nombre, descripcion, genero, arol);
 
