@@ -1,2 +1,6 @@
 -- Enlace a la base de datos
 database-1.cv0omsasqijz.us-east-1.rds.amazonaws.com
+
+Usuario: admin
+Contraseña: rootMedac
+BaseDeDatos: Valorant
