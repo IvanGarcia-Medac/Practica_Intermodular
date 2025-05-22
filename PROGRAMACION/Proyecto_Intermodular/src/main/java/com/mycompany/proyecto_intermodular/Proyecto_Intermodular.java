@@ -14,6 +14,9 @@ public class Proyecto_Intermodular {
         gestor.cargarDatos(); // llamo a funcion cargardatos para que al comienzo cargue los datos de la base de datos
         Scanner sc=new Scanner(System.in);
                 
+        
+               gestor.imprimirAgentes();
+        
                System.out.println("------------MENU------------"); 
                System.out.println("¿QUE QUIERES HACER?"); 
                System.out.println("1-VER TODOS LOS AGENTES"); 
@@ -21,23 +24,11 @@ public class Proyecto_Intermodular {
                System.out.println("3-VER ROLES Y HABILIDADES"); 
                
                opcion=Integer.parseInt(sc.nextLine());
-                
-         switch (opcion) {
-            case "1":
-                
-                break;
-            case "2";
-            
-                break;
-                
-            case "3";
-            
-                break;
-                
-            default:
+         
+               
                 
         }
        
                 
     }
-}
+

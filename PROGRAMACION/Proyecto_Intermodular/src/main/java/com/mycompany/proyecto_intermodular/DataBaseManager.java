@@ -16,6 +16,10 @@ public class DataBaseManager {
     String password; // contraseña de mi base de datos
     Connection conn;
 
+    
+    ArrayList<Agente> agentes = new ArrayList<>(); // arraylist de agentes
+    ArrayList<Rol> roles = new ArrayList<>();// arraylist de roles
+    ArrayList<Habilidad> habilidades = new ArrayList<>();// arraylist de habilidades
     //constructor 
     public DataBaseManager() {
 
@@ -31,9 +35,7 @@ public class DataBaseManager {
     }
 
     public void cargarDatos() {
-        ArrayList<Agente> agentes = new ArrayList<>(); // arraylist de agentes
-        ArrayList<Rol> roles = new ArrayList<>();// arraylist de roles
-        ArrayList<Habilidad> habilidades = new ArrayList<>();// arraylist de habilidades
+        
 
         String cAgentes = "select nombre,descripcion,genero,Idrol from agentes"; // consulta para los agentes
         String cRoles = "select idRol,nombre,posicion from rol"; // consulta para toles
@@ -63,7 +65,7 @@ public class DataBaseManager {
                 
                 Agente a = new Agente(nombre, descripcion, genero, arol);
 
-                agentes.add(a);
+                agentes.add(a); // meto los agentes en 
             }
 
      } catch (SQLException e) {
@@ -80,4 +82,12 @@ public class DataBaseManager {
 }
 
     }
+    
+    public void imprimirAgentes(){
+        for (int i = 0; i < agentes.size(); i++) {
+            System.out.println(agentes.get(i));
+            
+        }
+    }
+    
 }
