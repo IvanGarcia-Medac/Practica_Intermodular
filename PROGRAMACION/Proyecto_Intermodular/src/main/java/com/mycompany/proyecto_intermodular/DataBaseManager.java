@@ -24,9 +24,9 @@ public class DataBaseManager {
     public DataBaseManager() {
 
         try {
-            this.url = "jdbc:mysql://localhost:3306/Valorant";
-            this.user = "root";
-            this.password = "Med@c";
+            this.url = "jdbc:mysql://database-1.cv0omsasqijz.us-east-1.rds.amazonaws.com/Valorant";
+            this.user = "admin";
+            this.password = "rootMedac";
             this.conn = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             System.out.println("Error " + e.getMessage());
@@ -36,10 +36,10 @@ public class DataBaseManager {
 
     public void cargarDatos() {
 
-        String cAgentes = "select nombre,descripcion,genero,Idrol from agentes"; // consulta para los agentes
+        String cAgentes = "select nombre,descripcion,genero,Idrol from Agentes"; // consulta para los agentes
         String cHabilidades = "select idhabilidad,descripcion,IdAgente from habilidad"; // consultas para habilidades
 
-        String consultaRoles = "SELECT rol.idrol AS idRol, rol.nombre, rol.posicion FROM rol INNER JOIN agentes ON rol.IdRol = agentes.IdRol WHERE rol.IdRol = agentes.IdRol";
+        String consultaRoles = "SELECT Rol.idRol AS idRol, Rol.nombre, Rol.posicion FROM Rol INNER JOIN Agentes ON Rol.IdRol = Agentes.idRol WHERE Rol.idRol = Agentes.IdRol";
 
         try {// cargar agentes
             PreparedStatement stmt = conn.prepareStatement(cAgentes); //consulta que se hace (lanza la consulta)
