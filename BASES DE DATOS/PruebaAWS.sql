@@ -85,3 +85,22 @@ END;
 DELIMITER ;
 
 INSERT INTO Agente_Habilidad (idAgente, idHabilidad) VALUES (2, 1);
+
+-- Trigger para eliminar la inserción en la tabla Agentes_Habilidad
+DELIMITER //
+CREATE TRIGGER restar_habilidad
+AFTER DELETE ON Agente_Habilidad
+FOR EACH ROW
+BEGIN
+    UPDATE Agentes
+    SET num_habilidades = num_habilidades - 1
+    WHERE idAgente = OLD.idAgente;
+END;
+//
+DELIMITER ;
+
+DELETE FROM Agente_Habilidad
+WHERE idAgente = 2 AND idHabilidad = 1;
+
+select * from Agentes;
+
