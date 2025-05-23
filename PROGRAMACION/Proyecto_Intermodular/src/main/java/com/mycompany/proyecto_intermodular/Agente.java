@@ -8,13 +8,15 @@ public class Agente {
     private String descripcion;
     private String genero;
     private Rol rol;
+    private Habilidad habilidad;
 
     //constructor
-    public Agente(String nombre, String descripcion, String genero, Rol rol) {
+    public Agente(String nombre, String descripcion, String genero, Rol rol,Habilidad habilidad) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.genero = genero;
         this.rol = rol;
+        this.habilidad = habilidad;
     }
     
     //getters y setters
@@ -50,6 +52,14 @@ public class Agente {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
+
+    public Habilidad getHabilidad() {
+        return habilidad;
+    }
+
+    public void setHabilidad(Habilidad habilidad) {
+        this.habilidad = habilidad;
+    }
    
 
    
@@ -60,8 +70,10 @@ public class Agente {
 
     @Override
     public String toString() {
-        return "Agente{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", genero=" + genero + ", rol=" + rol + '}';
+        return "Agente{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", genero=" + genero + ", rol=" + rol + ", habilidad=" + habilidad + '}';
     }
+
+   
 
     
     

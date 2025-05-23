@@ -41,6 +41,11 @@ public class DataBaseManager {
 
         String consultaRoles = "SELECT Rol.idRol AS idRol, Rol.nombre, Rol.posicion FROM Rol INNER JOIN Agentes ON Rol.IdRol = Agentes.idRol WHERE Rol.idRol = Agentes.IdRol";
 
+        String consultaHabilidades = "select Habilidad.descripcion from Habilidad inner join  Agente_Habilidad on Habilidad.idHabilidad = Agente_Habilidad.idHabilidad \n"
+                + "inner join Agentes on Agentes.idAgente=Agente_Habilidad.idAgente where Agentes.idAgente=Agente_Habilidad.idHabilidad;";
+        
+        
+        
         try {// cargar agentes
             PreparedStatement stmt = conn.prepareStatement(cAgentes); //consulta que se hace (lanza la consulta)
             ResultSet rs = stmt.executeQuery(); // guarda los resultados de la consulta 
@@ -60,11 +65,28 @@ public class DataBaseManager {
                     String posicion = rs2.getString("posicion");
 
                     Rol arol = new Rol(idRol, nombreR, posicion);
-                    Agente a = new Agente(nombre, descripcion, genero, arol);
-                    agentes.add(a);
+
                 } else {
                     System.out.println("No se encontraron roles para el agente.");
                 }
+
+                //consulta para las habilidades y cargarlas
+                PreparedStatement stmt3 = conn.prepareStatement(consultaHabilidades); //consulta que se hace (lanza la consulta)
+                ResultSet rs3 = stmt3.executeQuery(); // guarda los resultados de la consulta 
+                if (rs3.next()) {
+
+                    String hDescripcion = rs3.getString("descripcion");
+
+                    Habilidad aHabilidad = new Habilidad(hDescripcion);
+
+                } else {
+                    System.out.println("No se encontraron habilidades para el agente");
+                }
+
+                Agente a = new Agente(nombre, descripcion, genero, arol, aHabilidad);
+                agentes.add(a);
+                stmt2.close();
+                rs2.close();
 
                 stmt2.close();
                 rs2.close();

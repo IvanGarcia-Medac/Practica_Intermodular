@@ -15,7 +15,7 @@ public class Proyecto_Intermodular {
         Scanner sc=new Scanner(System.in);
                 
         
-               gestor.imprimirAgentes();
+
         
                System.out.println("------------MENU------------"); 
                System.out.println("¿QUE QUIERES HACER?"); 
@@ -25,7 +25,13 @@ public class Proyecto_Intermodular {
                
                opcion=Integer.parseInt(sc.nextLine());
          
-               
+               switch (opcion) {
+            case 1:
+                               gestor.imprimirAgentes();
+                break;
+            default:
+                throw new AssertionError();
+        }
                 
         }
        
