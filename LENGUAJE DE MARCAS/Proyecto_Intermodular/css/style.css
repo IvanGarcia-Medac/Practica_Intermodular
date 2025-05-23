@@ -1,12 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
+    background-color: #ADD8E6;
     color: #333;
     padding: 20px;
 }
 
 header, footer {
-    background-color: #e0e0e0;
+    background-color: #78e24b;
     padding: 10px;
     text-align: center;
 }
@@ -15,12 +15,16 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
+    border: 1px solid black;
+    border-collapse: collapse;
 }
 
 th, td {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
+    border: 1px solid black;
+    border-collapse: collapse;
 }
 
 button {
@@ -36,3 +40,13 @@ button {
 .resaltable tr {    
     transition: background-color 0.3s ease;
 }
+
+body {
+    background-image: url('ruta/de/tu/imagen.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+
