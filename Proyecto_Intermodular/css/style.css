@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ADD8E6;
+    color: #333;
+    padding: 20px;
+}
+
+header, footer {
+    background-color: #78e24b;
+    padding: 10px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    
+}
+
+th, td {
+    border: 3px solid #ccc;
+    padding: 5px;
+    text-align: left;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    
+}
+
+
+.resaltable tr {    
+    transition: background-color 0.3s ease;
+}
+
+body {
+    background-image: url('ruta/de/tu/imagen.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+
