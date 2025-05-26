@@ -20,6 +20,7 @@ public class DataBaseManager {
     // variables necesarias
     Rol arol; // clase rol
     Habilidad aHabilidad; // calse habilidad
+    int idRol;
 
     ArrayList<Agente> agentes = new ArrayList<>(); // arraylist de agentes
 
@@ -39,28 +40,26 @@ public class DataBaseManager {
 
     public void cargarDatos() {
 
-        String cAgentes = "select nombre,descripcion,genero,Idrol from Agentes"; // consulta para los agentes
+        String cAgentes = "select idAgente,nombre,descripcion,genero,Idrol from Agentes"; // consulta para los agentes
 
-        String consultaRoles = "SELECT Rol.idRol AS idRol, Rol.nombre, Rol.posicion FROM Rol INNER JOIN Agentes ON Rol.IdRol = Agentes.idRol WHERE Rol.idRol = Agentes.IdRol";
-
-        String consultaHabilidades = "select Habilidad.descripcion from Habilidad inner join  Agente_Habilidad on Habilidad.idHabilidad = Agente_Habilidad.idHabilidad \n"
-                + "inner join Agentes on Agentes.idAgente=Agente_Habilidad.idAgente where Agentes.idAgente=Agente_Habilidad.idHabilidad";
-
+       
         try {// cargar agentes
             PreparedStatement stmt = conn.prepareStatement(cAgentes); //consulta que se hace (lanza la consulta)
             ResultSet rs = stmt.executeQuery(); // guarda los resultados de la consulta 
 
             while (rs.next()) {
-
+                int idAgente = rs.getInt("idAgente");
+                idRol = rs.getInt("idrol");
                 String nombre = rs.getString("nombre");
                 String descripcion = rs.getString("descripcion");
                 String genero = rs.getString("genero");
 
                 //consulta con where y crear el objeto
+                String consultaRoles = "SELECT * FROM Rol WHERE idRol = " + idRol + ";";
+
                 PreparedStatement stmt2 = conn.prepareStatement(consultaRoles); //consulta que se hace (lanza la consulta)
                 ResultSet rs2 = stmt2.executeQuery(); // guarda los resultados de la consulta 
                 if (rs2.next()) {
-                    int idRol = rs2.getInt("idRol");
                     String nombreR = rs2.getString("nombre");
                     String posicion = rs2.getString("posicion");
 
@@ -71,6 +70,9 @@ public class DataBaseManager {
                 }
 
                 //consulta para las habilidades y cargarlas
+                String consultaHabilidades = "select Habilidad.descripcion from Habilidad inner join  Agente_Habilidad on Habilidad.idHabilidad = Agente_Habilidad.idHabilidad \n"
+                + "inner join Agentes on Agentes.idAgente=Agente_Habilidad.idAgente where Agentes.idAgente= " + idAgente + ";";
+                
                 PreparedStatement stmt3 = conn.prepareStatement(consultaHabilidades); //consulta que se hace (lanza la consulta)
                 ResultSet rs3 = stmt3.executeQuery(); // guarda los resultados de la consulta 
                 if (rs3.next()) {
@@ -134,6 +136,7 @@ public class DataBaseManager {
             }
 
         }
+        
 
     }
 

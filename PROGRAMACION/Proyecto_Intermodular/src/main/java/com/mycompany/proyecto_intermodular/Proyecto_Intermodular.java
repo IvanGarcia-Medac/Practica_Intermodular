@@ -26,6 +26,7 @@ public class Proyecto_Intermodular {
                     break;
                 case 2:
                     gestor.seleccionAgente();
+                    break;
                 default:
                     throw new AssertionError();
             }
