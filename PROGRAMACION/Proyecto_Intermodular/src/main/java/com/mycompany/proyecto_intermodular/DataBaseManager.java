@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class DataBaseManager {
 
@@ -14,13 +15,15 @@ public class DataBaseManager {
     String url;  // localizacion de mi base de datos 
     String user; // usuario
     String password; // contraseña de mi base de datos
-    Connection conn;
+    Connection conn; // conexion a la base de datos
+
+    // variables necesarias
+    Rol arol; // clase rol
+    Habilidad aHabilidad; // calse habilidad
 
     ArrayList<Agente> agentes = new ArrayList<>(); // arraylist de agentes
-    ArrayList<Rol> roles = new ArrayList<>();// arraylist de roles
-    ArrayList<Habilidad> habilidades = new ArrayList<>();// arraylist de habilidades
-    //constructor 
 
+    //constructor 
     public DataBaseManager() {
 
         try {
@@ -37,15 +40,12 @@ public class DataBaseManager {
     public void cargarDatos() {
 
         String cAgentes = "select nombre,descripcion,genero,Idrol from Agentes"; // consulta para los agentes
-        String cHabilidades = "select idhabilidad,descripcion,IdAgente from habilidad"; // consultas para habilidades
 
         String consultaRoles = "SELECT Rol.idRol AS idRol, Rol.nombre, Rol.posicion FROM Rol INNER JOIN Agentes ON Rol.IdRol = Agentes.idRol WHERE Rol.idRol = Agentes.IdRol";
 
         String consultaHabilidades = "select Habilidad.descripcion from Habilidad inner join  Agente_Habilidad on Habilidad.idHabilidad = Agente_Habilidad.idHabilidad \n"
-                + "inner join Agentes on Agentes.idAgente=Agente_Habilidad.idAgente where Agentes.idAgente=Agente_Habilidad.idHabilidad;";
-        
-        
-        
+                + "inner join Agentes on Agentes.idAgente=Agente_Habilidad.idAgente where Agentes.idAgente=Agente_Habilidad.idHabilidad";
+
         try {// cargar agentes
             PreparedStatement stmt = conn.prepareStatement(cAgentes); //consulta que se hace (lanza la consulta)
             ResultSet rs = stmt.executeQuery(); // guarda los resultados de la consulta 
@@ -64,7 +64,7 @@ public class DataBaseManager {
                     String nombreR = rs2.getString("nombre");
                     String posicion = rs2.getString("posicion");
 
-                    Rol arol = new Rol(idRol, nombreR, posicion);
+                    arol = new Rol(idRol, nombreR, posicion);
 
                 } else {
                     System.out.println("No se encontraron roles para el agente.");
@@ -77,7 +77,7 @@ public class DataBaseManager {
 
                     String hDescripcion = rs3.getString("descripcion");
 
-                    Habilidad aHabilidad = new Habilidad(hDescripcion);
+                    aHabilidad = new Habilidad(hDescripcion);
 
                 } else {
                     System.out.println("No se encontraron habilidades para el agente");
@@ -88,8 +88,8 @@ public class DataBaseManager {
                 stmt2.close();
                 rs2.close();
 
-                stmt2.close();
-                rs2.close();
+                stmt3.close();
+                rs3.close();
             }
             stmt.close();
             rs.close();
@@ -111,9 +111,30 @@ public class DataBaseManager {
 
     public void imprimirAgentes() {
         for (int i = 0; i < agentes.size(); i++) {
-            System.out.println(agentes.get(i));
+            System.out.println("nombre:" + agentes.get(i).getNombre() + " Descripcion:" + agentes.get(i).getDescripcion()
+                    + " Genero:" + agentes.get(i).getGenero() + " Rol:" + agentes.get(i).getRol().getNombre() + " Habilidad:" + agentes.get(i).getHabilidad().getDescripcion());
 
         }
+    }
+
+    public void seleccionAgente() {
+        Scanner sc = new Scanner(System.in);
+
+        for (int i = 0; i < agentes.size(); i++) {
+            System.out.println(agentes.get(i).getNombre());
+
+        }
+
+        System.out.println("Que agente quieres ver");
+        String input = sc.nextLine();
+
+        for (int i = 0; i < agentes.size(); i++) {
+            if (input.equalsIgnoreCase(agentes.get(i).getNombre())) {
+                System.out.println(agentes.get(i));
+            }
+
+        }
+
     }
 
 }
