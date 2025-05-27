@@ -50,6 +50,21 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
 }
+#Boton3{
 
+    background-color: rgb(132, 14, 201);
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px
 
+}
+
+#Boton3:hover{
+
+    background: linear-gradient(0deg, #00380e 8%, #ffffff 37%, #000000 94%);
+
+}
 
