@@ -4,12 +4,12 @@ package com.mycompany.proyecto_intermodular;
 
 public class Habilidad {
     
- 
+    
     private String descripcion;
 
     
     // Constructor
-    public Habilidad( String descripcion) {
+    public Habilidad(String descripcion) {
         
         this.descripcion = descripcion;
         
@@ -17,6 +17,9 @@ public class Habilidad {
     
     // Getters
 
+   
+
+    
    
 
     public String getDescripcion() {
