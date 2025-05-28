@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Mas informacion</title>
+    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,12 +30,31 @@
         th {
             background-color: rgba(0, 0, 0, 0.7);
         }
+        .boton-sobre-nosotros {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #0066cc;
+      color: white;
+      text-decoration: none;
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      border-radius: 8px;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-left: 46%;
+    }
+
+    .boton-sobre-nosotros:hover {
+      background-color: #004999;
+      transform: scale(1.05);
+      margin-left: 46%;
+    }
+  
     </style>
 </head>
 <body>
 
     <h2 style="text-align: center;">Descripcion del trabajo</h2>
-    <a href="index.html">Home</a>
+    <a href="index.html" class="boton-sobre-nosotros">Home</a>
 
     <section>
         <table class="resaltable">
@@ -70,6 +90,11 @@
         </table>
     
 </section>
+
+    
+  <footer>
+        Página 2
+    </footer>
 
 </body>
 </html>

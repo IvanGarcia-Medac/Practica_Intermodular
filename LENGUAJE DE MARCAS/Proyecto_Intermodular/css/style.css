@@ -9,6 +9,7 @@ header, footer {
     background-color: #78e24b;
     padding: 10px;
     text-align: center;
+ 
 }
 
 table {
@@ -68,3 +69,9 @@ body {
 
 }
 
+   footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 16px;
+    color: #333;
+}
