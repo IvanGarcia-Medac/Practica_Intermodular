@@ -1,25 +1,20 @@
-
 package com.mycompany.proyecto_intermodular;
 
-
 public class Rol {
-  
+
 // atributos 
-    
     private int idrol;
     private String nombre;
     private String posicion;
-    
-    // constructor
 
+    // constructor
     public Rol(int idrol, String nombre, String posicion) {
         this.idrol = idrol;
         this.nombre = nombre;
         this.posicion = posicion;
     }
-    
-    //ggeters y setters
 
+    //ggeters y setters
     public int getIdrol() {
         return idrol;
     }
@@ -43,14 +38,11 @@ public class Rol {
     public void setPosicion(String posicion) {
         this.posicion = posicion;
     }
-    
-    
-    //to string
 
+    //to string
     @Override
     public String toString() {
         return "Rol{" + "idrol=" + idrol + ", nombre=" + nombre + ", posicion=" + posicion + '}';
     }
-    
-    
+
 }

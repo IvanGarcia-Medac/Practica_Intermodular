@@ -1,8 +1,7 @@
-
 package com.mycompany.proyecto_intermodular;
 
 public class Agente {
-   
+
     // atributos
     private String nombre;
     private String descripcion;
@@ -11,16 +10,15 @@ public class Agente {
     private Habilidad habilidad;
 
     //constructor
-    public Agente(String nombre, String descripcion, String genero, Rol rol,Habilidad habilidad) {
+    public Agente(String nombre, String descripcion, String genero, Rol rol, Habilidad habilidad) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.genero = genero;
         this.rol = rol;
         this.habilidad = habilidad;
     }
-    
-    //getters y setters
 
+    //getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -60,27 +58,11 @@ public class Agente {
     public void setHabilidad(Habilidad habilidad) {
         this.habilidad = habilidad;
     }
-   
 
-   
-
-    
-    
     //to string
-
     @Override
     public String toString() {
         return "Agente{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", genero=" + genero + ", rol=" + rol + ", habilidad=" + habilidad + '}';
     }
 
-   
-
-    
-    
-    
-
-
-     
-
-    
 }
